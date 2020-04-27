@@ -16,7 +16,7 @@
 
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <a href="#" class="navbar-brand">Website</a>
 
@@ -46,7 +46,7 @@
     </div>
 </div>
 
-<footer class="panel-footer">
+<footer class="footer">
     <div class="container">
         <p class="navbar-text">Website - developed by Adam Kowalczyk </p>
     </div>
