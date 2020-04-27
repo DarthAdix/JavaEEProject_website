@@ -13,12 +13,12 @@ public class Vote {
     public Vote() {
     }
 
-    public Vote(long id, long entryId, long userId, Timestamp date, VoteType voteType) {
-        this.id = id;
-        this.entryId = entryId;
-        this.userId = userId;
-        this.date = date;
-        this.voteType = voteType;
+    public Vote(Vote vote) {
+        this.id = vote.id;
+        this.entryId = vote.entryId;
+        this.userId = vote.userId;
+        this.date = new Timestamp(vote.date.getTime());
+        this.voteType = vote.voteType;
     }
 
     public long getId() {

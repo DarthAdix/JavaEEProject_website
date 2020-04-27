@@ -20,7 +20,7 @@
 
 <div class="container">
     <div class="col-md-8 col-md-offset-2">
-        <form class="form-signin" action="new" method="post">
+        <form class="form-signin" action="add" method="post">
             <h2 class="form-signin-heading">Dodaj wpis</h2>
             <input name="inputName" type="text" class="form-control" placeholder="Nazwa wpisu" required autofocus>
             <input name="inputUrl" type="url" class="form-control" placeholder="URL" required>

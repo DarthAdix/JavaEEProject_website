@@ -24,7 +24,7 @@ public class EntryService {
         entry.setName(name);
         entry.setDescription(description);
         entry.setUrl(url);
-        User userCopy = new User(user.getId(), user.getUsername(), user.getEmail(), user.getPassword());
+        User userCopy = new User(user);
         entry.setUser(userCopy);
         entry.setTimestamp(new Timestamp(new Date().getTime()));
         return entry;

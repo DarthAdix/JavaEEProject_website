@@ -52,7 +52,7 @@ public class VoteDAOImpl implements VoteDAO {
 
     @Override
     public Vote create(Vote vote) {
-        Vote voteCopy = new Vote();
+        Vote voteCopy = new Vote(vote);
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("entry_id", voteCopy.getEntryId());
         paramMap.put("user_id", voteCopy.getUserId());

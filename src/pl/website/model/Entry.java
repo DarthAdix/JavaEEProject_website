@@ -16,15 +16,15 @@ public class Entry {
     public Entry() {
     }
 
-    public Entry(long id, String name, String description, String url, Timestamp timestamp, User user, int upVote, int downVote) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.url = url;
-        this.timestamp = timestamp;
-        this.user = user;
-        this.upVote = upVote;
-        this.downVote = downVote;
+    public Entry(Entry entry) {
+        this.id = entry.id;
+        this.name = entry.name;
+        this.description = entry.description;
+        this.url = entry.url;
+        this.timestamp = new Timestamp(entry.timestamp.getTime());
+        this.user = new User(entry.user);
+        this.upVote = entry.upVote;
+        this.downVote = entry.downVote;
     }
 
     public long getId() {

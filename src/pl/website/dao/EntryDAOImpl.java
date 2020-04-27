@@ -41,14 +41,7 @@ public class EntryDAOImpl implements EntryDAO {
 
     @Override
     public Entry create(Entry entry) {
-        Entry resultEntry = new Entry(entry.getId(),
-                entry.getName(),
-                entry.getDescription(),
-                entry.getUrl(),
-                entry.getTimestamp(),
-                entry.getUser(),
-                entry.getUpVote(),
-                entry.getDownVote());
+        Entry resultEntry = new Entry(entry);
         KeyHolder holder = new GeneratedKeyHolder();
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("name", entry.getName());

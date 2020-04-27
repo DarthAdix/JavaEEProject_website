@@ -33,10 +33,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User create(User user) {
-        User resultUser = new User(user.getId(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getPassword());
+        User resultUser = new User(user);
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(user);
         int update = template.update(CREATE_USER, parameterSource, holder);

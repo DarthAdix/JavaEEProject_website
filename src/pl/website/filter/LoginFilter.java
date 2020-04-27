@@ -21,11 +21,11 @@ public class LoginFilter implements Filter {
         chain.doFilter(req, resp);
     }
 
-    private void saveUserInSession(HttpServletRequest httpServletRequest) {
+    private void saveUserInSession(HttpServletRequest request) {
         UserService userService = new UserService();
-        String username = httpServletRequest.getUserPrincipal().getName();
+        String username = request.getUserPrincipal().getName();
         User userByUsername = userService.getUserByUsername(username);
-        httpServletRequest.getSession(true).setAttribute("user", userByUsername);
+        request.getSession(true).setAttribute("user", userByUsername);
     }
 
     public void init(FilterConfig config) throws ServletException {

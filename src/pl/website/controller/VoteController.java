@@ -19,7 +19,7 @@ public class VoteController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        User loggedUser = (User) request.getAttribute("user");
+        User loggedUser = (User) request.getSession().getAttribute("user");
         if (loggedUser != null) {
             VoteType voteType = VoteType.valueOf(request.getParameter("vote"));
             long userId = loggedUser.getId();
@@ -33,7 +33,7 @@ public class VoteController extends HttpServlet {
         VoteService voteService = new VoteService();
         Vote existingVote = voteService.getVoteByEntryUserId(entryId, userId);
         Vote updatedVote = voteService.addOrUpdateVote(entryId, userId, voteType);
-        if (existingVote != updatedVote || !updatedVote.equals(existingVote))
+        if (existingVote != updatedVote || !existingVote.equals(updatedVote))
             updateEntry(entryId, existingVote, updatedVote);
     }
 
@@ -47,17 +47,11 @@ public class VoteController extends HttpServlet {
             updatedEntry = removeEntryVote(entryById, oldVote.getVoteType());
             updatedEntry = addEntryVote(entryById, newVote.getVoteType());
         }
+        entryService.updateEntry(updatedEntry);
     }
 
     private Entry removeEntryVote(Entry entry, VoteType voteType) {
-        Entry entryCopy = new Entry(entry.getId(),
-                entry.getName(),
-                entry.getDescription(),
-                entry.getUrl(),
-                entry.getTimestamp(),
-                entry.getUser(),
-                entry.getUpVote(),
-                entry.getDownVote());
+        Entry entryCopy = new Entry(entry);
         if (voteType == VoteType.VOTE_UP)
             entryCopy.setUpVote(entryCopy.getUpVote() - 1);
         else if (voteType == VoteType.VOTE_DOWN)
@@ -66,14 +60,7 @@ public class VoteController extends HttpServlet {
     }
 
     private Entry addEntryVote(Entry entry, VoteType voteType) {
-        Entry entryCopy = new Entry(entry.getId(),
-                entry.getName(),
-                entry.getDescription(),
-                entry.getUrl(),
-                entry.getTimestamp(),
-                entry.getUser(),
-                entry.getUpVote(),
-                entry.getDownVote());
+        Entry entryCopy = new Entry(entry);
         if (voteType == VoteType.VOTE_UP)
             entryCopy.setUpVote(entryCopy.getUpVote() + 1);
         else if (voteType == VoteType.VOTE_DOWN)
