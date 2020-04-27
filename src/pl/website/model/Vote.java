@@ -77,11 +77,20 @@ public class Vote {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vote vote = (Vote) o;
-        return id == vote.id &&
-                entryId == vote.entryId &&
-                userId == vote.userId &&
-                Objects.equals(date, vote.date) &&
-                voteType == vote.voteType;
+        if (date == null){
+            if (vote.date != null)
+                return false;
+        } else if (!date.equals(vote.date))
+            return false;
+        if (entryId != vote.entryId)
+            return false;
+        if (id != vote.id)
+            return false;
+        if (userId != vote.userId)
+            return false;
+        if (voteType != vote.voteType)
+            return false;
+        return true;
     }
 
     @Override

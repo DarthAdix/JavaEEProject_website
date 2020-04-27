@@ -18,14 +18,14 @@ public class VoteService {
         vote.setVoteType(voteType);
         DAOFactory factory = DAOFactory.getDAOFactory();
         VoteDAO voteDAO = factory.getVoteDAO();
-        voteDAO.create(vote);
+        vote = voteDAO.create(vote);
         return vote;
     }
 
     public Vote updateVote(long entryId, long userId, VoteType voteType) {
         DAOFactory factory = DAOFactory.getDAOFactory();
         VoteDAO voteDAO = factory.getVoteDAO();
-        Vote voteToUpdate = voteDAO.getVoteByUserIdEntryId(entryId, userId);
+        Vote voteToUpdate = voteDAO.getVoteByUserIdEntryId(userId, entryId);
         if (voteToUpdate != null){
             voteToUpdate.setVoteType(voteType);
             voteDAO.update(voteToUpdate);
@@ -36,19 +36,20 @@ public class VoteService {
     public Vote addOrUpdateVote(long entryId, long userId, VoteType voteType) {
         DAOFactory factory = DAOFactory.getDAOFactory();
         VoteDAO voteDAO = factory.getVoteDAO();
-        Vote vote = voteDAO.getVoteByUserIdEntryId(entryId, userId);
+        Vote vote = voteDAO.getVoteByUserIdEntryId(userId, entryId);
         Vote resultVote = null;
-        if (vote == null)
+        if (vote == null){
             resultVote = addVote(entryId, userId, voteType);
-        else
+        } else {
             resultVote = updateVote(entryId, userId, voteType);
+        }
         return resultVote;
     }
 
     public Vote getVoteByEntryUserId(long entryId, long userId) {
         DAOFactory factory = DAOFactory.getDAOFactory();
         VoteDAO voteDAO = factory.getVoteDAO();
-        Vote vote = voteDAO.getVoteByUserIdEntryId(entryId, userId);
+        Vote vote = voteDAO.getVoteByUserIdEntryId(userId, entryId);
         return vote;
     }
 }

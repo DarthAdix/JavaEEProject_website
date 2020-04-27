@@ -33,8 +33,12 @@ public class VoteController extends HttpServlet {
         VoteService voteService = new VoteService();
         Vote existingVote = voteService.getVoteByEntryUserId(entryId, userId);
         Vote updatedVote = voteService.addOrUpdateVote(entryId, userId, voteType);
-        if (existingVote != updatedVote || !existingVote.equals(updatedVote))
+        if (existingVote != null){
+            if (existingVote.getVoteType() != updatedVote.getVoteType())
+                updateEntry(entryId, existingVote, updatedVote);
+        } else {
             updateEntry(entryId, existingVote, updatedVote);
+        }
     }
 
     private void updateEntry(long entryId, Vote oldVote, Vote newVote) {
@@ -45,17 +49,18 @@ public class VoteController extends HttpServlet {
             updatedEntry = addEntryVote(entryById, newVote.getVoteType());
         else if (oldVote != null && newVote != null){
             updatedEntry = removeEntryVote(entryById, oldVote.getVoteType());
-            updatedEntry = addEntryVote(entryById, newVote.getVoteType());
+            updatedEntry = addEntryVote(updatedEntry, newVote.getVoteType());
         }
         entryService.updateEntry(updatedEntry);
     }
 
     private Entry removeEntryVote(Entry entry, VoteType voteType) {
         Entry entryCopy = new Entry(entry);
-        if (voteType == VoteType.VOTE_UP)
+        if (voteType == VoteType.VOTE_UP){
             entryCopy.setUpVote(entryCopy.getUpVote() - 1);
-        else if (voteType == VoteType.VOTE_DOWN)
+        } else if (voteType == VoteType.VOTE_DOWN){
             entryCopy.setDownVote(entryCopy.getDownVote() - 1);
+        }
         return entryCopy;
     }
 
