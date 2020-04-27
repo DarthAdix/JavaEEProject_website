@@ -16,23 +16,7 @@
 
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <a href="#" class="navbar-brand">Website</a>
-
-        <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
-            <span class="glyphicon glyphicon-list"></span>
-        </button>
-
-        <div class="collapse navbar-collapse navHeaderCollapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#">Strona główna</a> </li>
-                <li><a href="#">Dodaj</a> </li>
-                <li><a href="#">Zaloguj się</a> </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="fragment/navbar.jspf" />
 
 <div class="container">
     <div class="col-md-8 col-md-offset-2">
@@ -46,11 +30,7 @@
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="navbar-text">Website - developed by Adam Kowalczyk </p>
-    </div>
-</footer>
+<jsp:include page="fragment/footer.jspf" />
 
 <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-3.2.0.min.js"></script>
