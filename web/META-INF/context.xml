@@ -5,7 +5,7 @@
               username="root"
               password="admin"
               driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql:/localhost:3306/website"
+              url="jdbc:mysql://localhost:3306/website?serverTimezone=UTC"
               maxActive="30"
               maxIdle="10"/>
     <Realm className="org.apache.catalina.realm.DataSourceRealm"

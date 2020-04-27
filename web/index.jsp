@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
     <title>Website</title>
@@ -28,7 +29,14 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="#">Strona główna</a> </li>
           <li><a href="#">Dodaj</a> </li>
-          <li><a href="#">Zaloguj się</a> </li>
+          <c:choose>
+            <c:when test="${not empty sessionScope.user}">
+              <li><a href="logout">Wyloguj się</a> </li>
+            </c:when>
+            <c:otherwise>
+              <li><a href="login">Zaloguj się</a> </li>
+            </c:otherwise>
+          </c:choose>
         </ul>
       </div>
     </div>

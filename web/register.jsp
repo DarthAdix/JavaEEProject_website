@@ -36,7 +36,7 @@
 
 <div class="container">
     <div class="col-sm-6 col-md-4 col-md-offset-4">
-        <form class="form-signin" action="j_security_check" method="post">
+        <form class="form-signin" action="register" method="post">
             <h2 class="form-signin-heading">Zarejestruj się</h2>
             <input name="inputEmail" type="email" class="form-control" placeholder="Email" required autofocus>
             <input name="inputUsername" type="text" class="form-control" placeholder="Nazwa użytkownika" required autofocus>
