@@ -23,7 +23,7 @@
   <c:if test="${not empty requestScope.entries}">
     <c:forEach var="entry" items="${requestScope.entries}">
       <div class="container">
-        <div class="row">
+        <div class="row bs-callout bs-callout-primary">
           <div class="col col-md-1 col-sm-2">
             <!-- Kolumna głosowania -->
             <a href="${pageContext.request.contextPath}/vote?entry_id=${entry.id}&vote=VOTE_UP" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-arrow-up"></span> </a>
